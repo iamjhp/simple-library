@@ -17,20 +17,25 @@ main {
 }
 
 .form-popup {
-    display: none;
+    display: none; 
     border: 3px solid #f1f1f1;
 }
 
 .form-container {
-    width: 300px;
+    width: 350px;
     padding: 1rem;
     background-color: white;
-    
+}
+
+.form-container > input {
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr;
+    gap: 1rem;
 }
 
 .col-1rem {

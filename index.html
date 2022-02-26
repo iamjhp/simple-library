@@ -13,24 +13,24 @@
         <h1>Library</h1>
     </header>
     <main>
-        <button id="btn">NEW BOOK</button>
+        <button id="btn">Add book</button>
         <div class="form-popup">
-            <form action="form-popup" class="form-container">
-                <h2>New Book</h2>
+            <form class="form-container">
+                <h2>ADD NEW BOOK</h2>
                 <div class="container">
-                    <label for="title">Title</label>
-                    <input class="col-1rem" type="text" placeholder="Enter Title" name="title" required>
+                    <input type="text" placeholder="Book Title" name="title" id="title" required>
 
-                    <label for="author">Author</label>
-                    <input class="col-1rem" type="text" placeholder="Enter Author" name="author" required>
+                    <input type="text" placeholder="Author" name="author" id="author" required>
                  
-                    <label for="pages">Pages</label>
-                    <input class="col-1rem" type="number" placeholder="0-10000" name="pages" min="0" max="10000" required>
+                    <input type="number" placeholder="Pages" name="pages" id="pages" min="0" max="10000" required>
 
-                    <label for="read">Read</label>
-                    <input class="col-1rem" type="checkbox" name="read">
-
-                    <button id="add-btn">add</button>
+                    <div class="read-checkbox-container">
+                        <label for="hasRead">Have you read it?</label>
+                        <input type="checkbox" name="hasRead" id="hasRead">
+                    </div>
+                    <div>
+                      <button id="add-btn" type="submit">add</button>
+                    </div>
                 </div>
             </form>
         </div>
