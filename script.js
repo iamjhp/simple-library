@@ -51,7 +51,7 @@ function printAllBooks() {
 }
 
 // check if all form required inputs have been entered
-function checkRequiredFormInputViaDOM () {
+function checkRequiredFormInputViaDOM() {
     let requiredForm = document.querySelector('form').querySelectorAll("[required]")
     for (let el of requiredForm) {
         if (!el.reportValidity()) {
@@ -59,5 +59,9 @@ function checkRequiredFormInputViaDOM () {
         }
     }
     return true;
+}
+
+function createBookCard() {
+    
 }
 

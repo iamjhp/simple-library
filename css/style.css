@@ -1,10 +1,19 @@
 html {
     background-color: antiquewhite;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    width: 100%;
+}
+
+header {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -12,6 +21,11 @@ body {
 main {
     display: flex;
     flex-direction: column;
+    
+}
+
+.btn-container {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -19,12 +33,22 @@ main {
 .form-popup {
     display: none; 
     border: 3px solid #f1f1f1;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin: auto;
+    margin-top: 8rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 2rem;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
 }
 
 .form-container {
-    width: 350px;
     padding: 1rem;
-    background-color: white;
+    
 }
 
 .form-container > input {
@@ -40,5 +64,24 @@ main {
 
 .col-1rem {
     margin-left: 1rem;
+}
 
+.library-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 5rem;
+}
+.book-card {
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    width: 254px;
+    height: 150px;
+    justify-content: center;
+    text-align: center;
+    border-radius: 1rem;
 }
