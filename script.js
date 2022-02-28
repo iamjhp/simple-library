@@ -2,13 +2,14 @@ const addBookBtn = document.getElementById("btn")
 const addBookSubmitBtn = document.getElementById("add-btn")
 const popUpForm = document.querySelector(".form-popup")
 const libraryForm = document.querySelector(".form-container")
-
+const body = document.querySelector("body")
 let myLibrary = []
 
 addBookBtn.addEventListener("click", () => {
     libraryForm.reset()
     popUpForm.style.display = "block"
 })
+
 addBookSubmitBtn.addEventListener("click", (e) => {
     if (!checkRequiredFormInputViaDOM()) {
         // not all required inputs are entered
@@ -19,7 +20,11 @@ addBookSubmitBtn.addEventListener("click", (e) => {
     popUpForm.style.display = "none"
 
     addBookToLibary();
-}) 
+})
+
+body.addEventListener("click", (e) => {
+    closeFormPopUp(e)
+})
 
 function Book(title, author, pages, hasRead) {
     this.title = title
@@ -105,4 +110,12 @@ function createBookCard(title, author, pages, hasRead) {
     removeButton.classList.add("remove-button")
     removeButtonDiv.appendChild(removeButton)
     newDiv.appendChild(removeButtonDiv)
+}
+
+// close form popup window if the area outside the form or the "Add button" was pressed
+function closeFormPopUp(e) {
+    if(e.target != addBookBtn && !libraryForm.contains(e.target)) {
+        // close popup window 
+        popUpForm.style.display = "none"   
+    }
 }
