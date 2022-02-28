@@ -1,8 +1,14 @@
 const addBookBtn = document.getElementById("btn")
 const addBookSubmitBtn = document.getElementById("add-btn")
 const popUpForm = document.querySelector(".form-popup")
+const libraryForm = document.querySelector(".form-container")
 
-addBookBtn.addEventListener("click", () => popUpForm.style.display = "block")
+let myLibrary = []
+
+addBookBtn.addEventListener("click", () => {
+    libraryForm.reset()
+    popUpForm.style.display = "block"
+})
 addBookSubmitBtn.addEventListener("click", (e) => {
     if (!checkRequiredFormInputViaDOM()) {
         // not all required inputs are entered
@@ -14,12 +20,6 @@ addBookSubmitBtn.addEventListener("click", (e) => {
 
     addBookToLibary();
 }) 
-
-
-//popUpForm.style.display = "none")
-
-let myLibrary = []
-
 
 function Book(title, author, pages, hasRead) {
     this.title = title
@@ -38,12 +38,10 @@ function addBookToLibary() {
     const newBookAuthor = document.getElementById("author").value
     const newBookPages = document.getElementById("pages").value
     const hasRead = document.getElementById("hasRead").checked
-
     const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, hasRead)
 
     myLibrary.push(newBook)
-
-    console.log(myLibrary)
+    createBookCard(newBookTitle, newBookAuthor, newBookPages, hasRead)
 }
 
 function printAllBooks() {
@@ -61,7 +59,50 @@ function checkRequiredFormInputViaDOM() {
     return true;
 }
 
-function createBookCard() {
-    
-}
+function createBookCard(title, author, pages, hasRead) {
+    // create a book-card div 
+    const newDiv = document.createElement("div")
+    newDiv.classList.add("book-card")
 
+    // append the newDiv to the library-container
+    const libContainerDiv = document.querySelector(".library-container")
+    libContainerDiv.appendChild(newDiv)
+
+    // create the title-div
+    const titleDiv = document.createElement("div")
+    const titleContent = document.createTextNode(title)
+    titleDiv.classList.add("title")
+    titleDiv.appendChild(titleContent)
+    newDiv.appendChild(titleDiv)
+
+    // create the author-div
+    const authorDiv = document.createElement("div")
+    const authorContent = document.createTextNode(author)
+    authorDiv.classList.add("author")
+    authorDiv.appendChild(authorContent)
+    newDiv.appendChild(authorDiv)
+
+    // create the pages-div
+    const pagesDiv = document.createElement("div")
+    const pagesContent = document.createTextNode(444)
+    pagesDiv.classList.add(pages)
+    pagesDiv.appendChild(pagesContent)
+    newDiv.appendChild(pagesDiv)
+
+    // create the read-button
+    const readButtonDiv = document.createElement("div")
+    const readButton = document.createElement("button")
+    readButton.innerText = "Read"
+    readButton.classList.add("read-button")
+    readButton.classList.add("read-" + hasRead)
+    readButtonDiv.appendChild(readButton)
+    newDiv.appendChild(readButtonDiv)
+
+    // create the remove-button
+    const removeButtonDiv = document.createElement("div")
+    const removeButton = document.createElement("button")
+    removeButton.innerText = "Remove"
+    removeButton.classList.add("remove-button")
+    removeButtonDiv.appendChild(removeButton)
+    newDiv.appendChild(removeButtonDiv)
+}
