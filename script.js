@@ -3,7 +3,9 @@ const addBookSubmitBtn = document.getElementById("add-btn")
 const popUpForm = document.querySelector(".form-popup")
 const libraryForm = document.querySelector(".form-container")
 const body = document.querySelector("body")
+const removeButton = document.querySelector(".remove-button")
 let myLibrary = []
+let id = 0;
 
 addBookBtn.addEventListener("click", () => {
     libraryForm.reset()
@@ -26,27 +28,30 @@ body.addEventListener("click", (e) => {
     closeFormPopUp(e)
 })
 
-function Book(title, author, pages, hasRead) {
+function Book(title, author, pages, hasRead, id) {
     this.title = title
     this.author = author
     this.pages = pages
     this.hadRead = hasRead
+    this.id = id
 }
 
-const book1 = new Book("ABC", "Hans Peter", 25, false)
-const book2 = new Book("DEF", "Thomas Hey", 3000, true)
-myLibrary.push(book1)
-myLibrary.push(book2)
+Book.prototype.getId = function() {
+    console.log(this.id)
+}
+
+//myLibrary.filter(el => el.id == 2)
 
 function addBookToLibary() {
     const newBookTitle = document.getElementById("title").value
     const newBookAuthor = document.getElementById("author").value
     const newBookPages = document.getElementById("pages").value
     const hasRead = document.getElementById("hasRead").checked
-    const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, hasRead)
+    const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, hasRead, id)
 
     myLibrary.push(newBook)
-    createBookCard(newBookTitle, newBookAuthor, newBookPages, hasRead)
+    createBookCard(newBookTitle, newBookAuthor, newBookPages, hasRead, id)
+    id++
 }
 
 function printAllBooks() {
@@ -64,10 +69,11 @@ function checkRequiredFormInputViaDOM() {
     return true;
 }
 
-function createBookCard(title, author, pages, hasRead) {
+function createBookCard(title, author, pages, hasRead, id) {
     // create a book-card div 
     const newDiv = document.createElement("div")
     newDiv.classList.add("book-card")
+    newDiv.setAttribute("id", id)
 
     // append the newDiv to the library-container
     const libContainerDiv = document.querySelector(".library-container")
@@ -89,7 +95,7 @@ function createBookCard(title, author, pages, hasRead) {
 
     // create the pages-div
     const pagesDiv = document.createElement("div")
-    const pagesContent = document.createTextNode(444)
+    const pagesContent = document.createTextNode(pages)
     pagesDiv.classList.add(pages)
     pagesDiv.appendChild(pagesContent)
     newDiv.appendChild(pagesDiv)

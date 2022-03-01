@@ -86,3 +86,7 @@ main {
     text-align: center;
     border-radius: 1rem;
 }
+
+.read-true {
+    background-color: greenyellow;
+}
