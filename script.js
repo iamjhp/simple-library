@@ -2,8 +2,9 @@ const addBookBtn = document.getElementById("btn")
 const addBookSubmitBtn = document.getElementById("add-btn")
 const popUpForm = document.querySelector(".form-popup")
 const libraryForm = document.querySelector(".form-container")
+const libraryContainer = document.querySelector(".library-container")
 const body = document.querySelector("body")
-const removeButton = document.querySelector(".remove-button")
+
 let myLibrary = []
 let id = 0;
 
@@ -116,6 +117,16 @@ function createBookCard(title, author, pages, hasRead, id) {
     removeButton.classList.add("remove-button")
     removeButtonDiv.appendChild(removeButton)
     newDiv.appendChild(removeButtonDiv)
+
+    // add EventListener for remove-button
+    addEventListenerForRemoveButton(removeButton, id)
+
+}
+
+function addEventListenerForRemoveButton(removeButton, id) {
+    removeButton.addEventListener("click", () => {
+        deleteBookCard(id)
+    })
 }
 
 // close form popup window if the area outside the form or the "Add button" was pressed
@@ -124,4 +135,13 @@ function closeFormPopUp(e) {
         // close popup window 
         popUpForm.style.display = "none"   
     }
+}
+
+function deleteBookFromLibrary() {
+    
+}
+
+function deleteBookCard(id) {
+    const bookCard = document.getElementById(id)
+    libraryContainer.removeChild(bookCard)
 }
