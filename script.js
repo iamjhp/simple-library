@@ -38,7 +38,7 @@ function Book(title, author, pages, hasRead, id) {
 }
 
 Book.prototype.getId = function() {
-    console.log(this.id)
+    return this.id
 }
 
 //myLibrary.filter(el => el.id == 2)
@@ -51,7 +51,7 @@ function addBookToLibary() {
     const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, hasRead, id)
 
     myLibrary.push(newBook)
-    createBookCard(newBookTitle, newBookAuthor, newBookPages, hasRead, id)
+    createBookCard(newBookTitle, newBookAuthor, newBookPages, hasRead, id, newBook)
     id++
 }
 
@@ -70,7 +70,7 @@ function checkRequiredFormInputViaDOM() {
     return true;
 }
 
-function createBookCard(title, author, pages, hasRead, id) {
+function createBookCard(title, author, pages, hasRead, id, newBook) {
     // create a book-card div 
     const newDiv = document.createElement("div")
     newDiv.classList.add("book-card")
@@ -119,13 +119,14 @@ function createBookCard(title, author, pages, hasRead, id) {
     newDiv.appendChild(removeButtonDiv)
 
     // add EventListener for remove-button
-    addEventListenerForRemoveButton(removeButton, id)
-
-}
-
-function addEventListenerForRemoveButton(removeButton, id) {
     removeButton.addEventListener("click", () => {
         deleteBookCard(id)
+        deleteBookFromLibrary(id)
+    })
+    // add EventListenter for read-button
+    readButton.addEventListener("click", () => {
+        newBook.toggleReadIntheLibrary()
+        toggleEventListenerReadButton(readButton)
     })
 }
 
@@ -137,11 +138,33 @@ function closeFormPopUp(e) {
     }
 }
 
-function deleteBookFromLibrary() {
-    
+function deleteBookFromLibrary(id) {
+    let len = myLibrary.length
+    for (let i = 0; i < len; i++) {
+        if (myLibrary[i].id == id) {
+            myLibrary.splice(i, 1)
+            break;
+        }
+    }
 }
 
 function deleteBookCard(id) {
     const bookCard = document.getElementById(id)
     libraryContainer.removeChild(bookCard)
 }
+
+function toggleEventListenerReadButton(readButton) {
+    let buttonClassList = readButton.classList
+    if (buttonClassList.contains("read-true")) {
+        buttonClassList.replace("read-true", "read-false")
+    } else {
+        buttonClassList.replace("read-false", "read-true")
+    }
+
+}
+
+Book.prototype.toggleReadIntheLibrary = function () {
+    this.hadRead = (this.hadRead == false) ? true : false
+}
+
+

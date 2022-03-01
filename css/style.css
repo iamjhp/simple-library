@@ -90,3 +90,7 @@ main {
 .read-true {
     background-color: greenyellow;
 }
+
+.read-false {
+    background-color: red;
+}
