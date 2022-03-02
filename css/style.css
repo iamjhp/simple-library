@@ -1,5 +1,5 @@
 html {
-    background-color: antiquewhite;
+    background-color: #fef3c7;
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -17,6 +17,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+header h1 {
+    color: #78716c;
 }
 
 main {
@@ -76,21 +80,36 @@ main {
     margin-right: 1rem;
     margin-top: 5rem;
 }
+
 .book-card {
     display: flex;
     flex-direction: column;
-    background-color: yellow;
     width: 254px;
     height: 150px;
     justify-content: center;
     text-align: center;
     border-radius: 1rem;
+    border-style: solid;
+    border-color: #92400e;
+}
+
+.book-card:nth-child(even) {
+    background-color: #d8b4fe;
+}
+
+.book-card:nth-child(odd) {
+    background-color: #fcd34d;
+}
+
+.read-button {
+    border-style: none;
+    color: white;
 }
 
 .read-true {
-    background-color: greenyellow;
+    background-color: #65a30d;
 }
 
 .read-false {
-    background-color: red;
+    background-color: #dc2626ed;
 }
